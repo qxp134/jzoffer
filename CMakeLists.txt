@@ -13,16 +13,21 @@ option(USE_MYMATH "Use just_fun provided math implement" ON)
 #to the source code
 configure_file(just_fun.h.in just_fun.h)
 
-add_subdirectory(MathFunctions)
+#add_subdirectory(MathFunctions)
+
+if(USE_MYMATH)
+	add_subdirectory(MathFunctions)
+	list(APPEND EXTRA_LIBS MathFunctions)
+endif()
 
 #add_execute
 add_executable(just_fun fun.cpp)
 
-target_link_libraries(just_fun PUBLIC MathFunctions)
+target_link_libraries(just_fun PUBLIC ${EXTRA_LIBS})
 
 #add the binary tree to the search path for include files
 #so that we will find just_fun.h
 target_include_directories(just_fun PUBLIC
 			"${PROJECT_BINARY_DIR}"
-			"${PROJECT_SOURCE_DIR}/MathFunctions"
 			)	
+
