@@ -3,7 +3,7 @@
 #include <string>
 class Solution {
  public:
-  int myAtoi(string str) {  //第一遍失败了，最后结果可能long long都放不下
+  int myAtoi(std::string str) {  //第一遍失败了，最后结果可能long long都放不下
     bool positive_flag = true;
     long long res = 0;
     auto iter = str.begin();
@@ -15,7 +15,7 @@ class Solution {
       positive_flag = false;
       ++iter;
     }
-    string res_str(iter, str.end());
+    std::string res_str(iter, str.end());
     for (iter = res_str.begin(); iter != res_str.end(); ++iter) {
       if (*iter < '0' || *iter > '9') {
         break;
@@ -39,8 +39,8 @@ class Solution {
 };
 
 int main() {
-  string test_str("-2000000000000000000");
+  std::string test_str("-2000000000000000000");
   Solution s;
-  cout << s.myAtoi(test_str);
+  std::cout << s.myAtoi(test_str);
   return 0;
 }
