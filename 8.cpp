@@ -3,7 +3,6 @@
 #include <string>
 class Solution {
  public:
-
   int myAtoi(std::string str) {  //第一遍失败了，最后结果可能long long都放不下
     bool positive_flag = true;
     long long res = 0;
@@ -17,10 +16,7 @@ class Solution {
       ++iter;
     }
     std::string res_str(iter, str.end());
-    for (iter = res_str.begin(); iter != res_str.end(); ++iter) {
-      if (*iter < '0' || *iter > '9') {
-        break;
-      }
+    for (; iter != res_str.end() && std::isdigit(*iter); ++iter) {
       res = res * 10 + (*iter - '0');
       if (res > INT_MAX)
         break;
