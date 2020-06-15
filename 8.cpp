@@ -3,11 +3,11 @@
 #include <string>
 class Solution {
  public:
-  int myAtoi(std::string str) {  //µÚÒ»±éÊ§°ÜÁË£¬×îºó½á¹û¿ÉÄÜlong long¶¼·Å²»ÏÂ
+  int myAtoi(std::string str) {  //ï¿½ï¿½Ò»ï¿½ï¿½Ê§ï¿½ï¿½ï¿½Ë£ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½long longï¿½ï¿½ï¿½Å²ï¿½ï¿½ï¿½
     bool positive_flag = true;
     long long res = 0;
     auto iter = str.begin();
-    for (; iter != str.end() && *iter == ' '; ++iter)  //¿ªÍ·¿Õ°×È¥µô
+    for (; iter != str.end() && *iter == ' '; ++iter)  //ï¿½ï¿½Í·ï¿½Õ°ï¿½È¥ï¿½ï¿½
     	;
     if (iter == str.end()) return 0;
     if (*iter == '+') ++iter;
@@ -16,10 +16,7 @@ class Solution {
       ++iter;
     }
     std::string res_str(iter, str.end());
-    for (iter = res_str.begin(); iter != res_str.end(); ++iter) {
-      if (*iter < '0' || *iter > '9') {
-        break;
-      }
+    for (; iter != res_str.end() && std::isdigit(*iter); ++iter) {
       res = res * 10 + (*iter - '0');
       if (res > INT_MAX)
         break;
