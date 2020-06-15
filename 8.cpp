@@ -4,11 +4,11 @@
 using namespace std;
 class Solution {
  public:
-  int myAtoi(string str) {  //µÚÒ»±éÊ§°ÜÁË£¬×îºó½á¹û¿ÉÄÜlong long¶¼·Å²»ÏÂ
+  int myAtoi(string str) {  //ç¬¬ä¸€éå¤±è´¥äº†ï¼Œæœ€åç»“æœå¯èƒ½long longéƒ½æ”¾ä¸ä¸‹
     int positive_num = 0;
     long long res = 0;
     auto i = str.begin();
-    for (; i != str.end(); i++)  //¿ªÍ·¿Õ°×È¥µô
+    for (; i != str.end(); i++)  //å¼€å¤´ç©ºç™½å»æ‰
     {
       if (*i == ' ') {
         continue;
@@ -56,3 +56,4 @@ int main() {
   cout << s.myAtoi(test_str);
   return 0;
 }
+//change test branch
