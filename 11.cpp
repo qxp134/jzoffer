@@ -2,34 +2,28 @@
 #include <vector>
 using namespace std;
 class Solution {
-public:
-	int maxArea(vector<int>& height) {
-		long max = 0;
-		long left_max_ = 0;
-		for (int i = 0; i < height.size(); i++)
-		{
-			if (height[i] <= left_max_)
-			{
-				continue;
-			}
-			else
-			{
-				left_max_ = height[i];
-			}
-			for (int j = height.size() - 1; j > i; j--)
-			{
-				long high = height[i] < height[j] ? height[i] : height[j];
-				long area = (j - i) * high;
-				if (max < area)
-				{
-					max = area;
-				}
-				if (height[j] >= height[i])
-					break;
-			}
-		}
-		return max;
-	}
+ public:
+  int maxArea(vector<int>& height) {
+    long max = 0;
+    long left_max_ = 0;
+    for (int i = 0; i < height.size(); i++) {
+      if (height[i] <= left_max_) {
+        continue;
+      } else {
+        left_max_ = height[i];
+      }
+      for (int j = height.size() - 1; j > i; j--) {
+        long high = height[i] < height[j] ? height[i] : height[j];
+        long area = (j - i) * high;
+        if (max < area) {
+          max = area;
+        }
+        if (height[j] >= height[i])
+          break;
+      }
+    }
+    return max;
+  }
 };
 //两个for嵌套果然超时了，后来想了排序，存map等均不行，考虑到对面积有影响的因素是距离和最短的那块板，从后往前比不就行了，如果找到比自己长的板，直接break；
 //通过上面的剪枝，快了一点点，但是复杂度还是n2   1992ms
