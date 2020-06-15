@@ -3,11 +3,11 @@
 #include <string>
 class Solution {
  public:
-  int myAtoi(std::string str) {  //��һ��ʧ���ˣ����������long long���Ų���
+  int myAtoi(std::string str) {  //第一遍失败了，最后结果可能long long都放不下
     bool positive_flag = true;
     long long res = 0;
     auto iter = str.begin();
-    for (; iter != str.end() && *iter == ' '; ++iter)  //��ͷ�հ�ȥ��
+    for (; iter != str.end() && *iter == ' '; ++iter)  //开头空白去掉
     	;
     if (iter == str.end()) return 0;
     if (*iter == '+') ++iter;
