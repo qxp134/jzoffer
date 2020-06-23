@@ -8,21 +8,21 @@ struct ListNode {
 class Solution {
  public:
   ListNode* removeNthFromEnd(ListNode* head, int n) {
-    ListNode* frist_ptr = head;   // found the end node
-    ListNode* second_ptr = head;  // a node before will be deleted node
+    ListNode* fast_ptr = head;   // found the end node
+    ListNode* slow_ptr = head;  // a node before will be deleted node
     while (n != 0) {
       --n;
-      frist_ptr = frist_ptr->next;
+      fast_ptr = fast_ptr->next;
     }
-    if (frist_ptr == NULL)
+    if (!fast_ptr)
       return head->next;
-    while (frist_ptr->next != NULL) {
-      frist_ptr = frist_ptr->next;
-      second_ptr = second_ptr->next;
+    while (fast_ptr->next) {
+      fast_ptr = fast_ptr->next;
+      slow_ptr = slow_ptr->next;
     }
-    ListNode* delete_ptr = second_ptr->next;
-    if (delete_ptr != NULL) {
-      second_ptr->next = delete_ptr->next;
+    ListNode* delete_ptr = slow_ptr->next;
+    if (delete_ptr) {
+      slow_ptr->next = delete_ptr->next;
       delete (delete_ptr);
     }
     return head;

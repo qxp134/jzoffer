@@ -6,17 +6,17 @@
 class Solution {
  public:
   std::vector<std::vector<int> > fourSum(
-      const std::vector<int>& nums, int target) {
+      std::vector<int>& nums, int target) {
     std::vector<std::vector<int> > four_sum_vec;
     std::sort(nums.begin(), nums.end());
-    int last_fri_num = 999;
+    int last_frist_num = 999;
     int len = nums.size();
     std::vector<int> base_vec;
     for (int i = 0; i < len; ++i) {
-      if (nums[i] == last_fri_num) {
+      if (nums[i] == last_frist_num) {
         continue;
       }
-      last_fri_num = nums[i];
+      last_frist_num = nums[i];
       int last_sec_num = 999;
       for (int j = i + 1; j < len; ++j) {
         if (nums[j] == last_sec_num) {
@@ -33,11 +33,7 @@ class Solution {
           } else if (diff < 0) {
             ++k;
           } else {
-            base_vec.push_back(nums[i]);
-            base_vec.push_back(nums[j]);
-            base_vec.push_back(nums[k]);
-            base_vec.push_back(nums[l]);
-            four_sum_vec.push_back(base_vec);
+            four_sum_vec.emplace_back(std::vector<int>({nums[i], nums[j], nums[k], nums[l]}));
             base_vec.clear();
             ++k;
             while (k < l) {
