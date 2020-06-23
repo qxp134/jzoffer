@@ -15,7 +15,9 @@ class Solution {
       fast_ptr = fast_ptr->next;
     }
     if (!fast_ptr)
-      return head->next;
+      head = head->next;
+      delete(slow_ptr);
+      return head;
     while (fast_ptr->next) {
       fast_ptr = fast_ptr->next;
       slow_ptr = slow_ptr->next;
