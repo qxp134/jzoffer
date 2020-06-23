@@ -1,0 +1,18 @@
+#!/bin/bash
+
+basedir=$(dirname "$0")
+case "${1}" in
+  --about )
+    echo "Runs cpplint on source files"
+    ;;
+  * )
+
+    for file in `git diff-index --cached --name-only HEAD | grep -iE '\.(cpp|cc|h|hpp)$' ` ; do
+        # python3 not works on MacOS
+        python2 ${basedir}/cpplint.py --filter=-legal/copyright "${file}"
+        if [ $? -ne 0 ]; then
+            exit 1
+        fi
+    done
+    ;;
+esac
