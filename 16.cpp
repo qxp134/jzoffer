@@ -5,7 +5,8 @@
 
 class Solution {
  public:
-  int threeSumClosest(const std::vector<int>& nums, int target) {
+  int threeSumClosest(const std::vector<int>& input_nums, int target) {
+    std::vector<int> nums = input_nums;
     std::sort(nums.begin(), nums.end());
     int last_num = 999;
 
