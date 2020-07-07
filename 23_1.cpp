@@ -13,26 +13,27 @@ struct IdWithValue {
   int id_;
   int value_;
   IdWithValue(int id, int value) : id_(id), value_(value) {}
-  bool operator>(IdWithValue other) const {
-    return value_ > other.value_;
-  }
+  // bool operator>(IdWithValue other) const {
+  // return value_ > other.value_;
+  //}
 };
+
+inline bool operator<(const IdWithValue& lhs, const IdWithValue& rhs) {
+  return lhs.value_ > rhs.value_;
+}
 
 class Solution {
  public:
   ListNode* mergeKLists(std::vector<ListNode*>& lists) {  // NOLINT
-    std::priority_queue<
-        IdWithValue, std::vector<IdWithValue>, std::greater<IdWithValue> >
-        heap;
+    std::priority_queue<IdWithValue> heap;
     ListNode* head = nullptr;
     ListNode* work;
     bool is_frist = true;
     int length = lists.size();
     for (int i = 0; i < length; ++i) {
-      if (lists[i] != nullptr) {
-        IdWithValue temp(i, lists[i]->val);
+      if (lists[i]) {
+        heap.emplace(i, lists[i]->val);
         lists[i] = lists[i]->next;
-        heap.push(temp);
       }
     }
     while (!heap.empty()) {
@@ -48,9 +49,8 @@ class Solution {
         work = flag_node;
       }
       int index = pop_value.id_;
-      if (lists[index] != nullptr) {
-        IdWithValue push_value(index, lists[index]->val);
-        heap.push(push_value);
+      if (lists[index]) {
+        heap.emplace(index, lists[index]->val);
         lists[index] = lists[index]->next;
       }
     }

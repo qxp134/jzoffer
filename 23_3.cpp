@@ -11,7 +11,8 @@ struct ListNode {
 class Solution {
  public:
   ListNode* mergeTwo(ListNode* list_one, ListNode* list_two) {
-    ListNode* head = new ListNode(-1);
+    ListNode tmp(0);
+    ListNode* head = &tmp;
     ListNode* work = head;
     while (list_one && list_two) {
       if (list_one->val < list_two->val) {
@@ -23,18 +24,18 @@ class Solution {
       }
       work = work->next;
     }
-    if (list_one == nullptr) {
+    if (!list_one) {
       work->next = list_two;
     } else {
       work->next = list_one;
     }
-    work = head;
-    head = head->next;
-    delete work;
-    return head;
+    // work = head;
+    // head = head->next;
+    // delete work;
+    return head->next;
   }
   ListNode* mergeKLists(std::vector<ListNode*>& lists) {  // NOLINT
-    if (lists.size() == 0)
+    if (lists.empty())
       return nullptr;  // fastest and space complexity O(1) defeat 100% user
     while (lists.size() != 1) {
       int length = lists.size();

@@ -7,7 +7,8 @@ struct ListNode {
 class Solution {
  public:
   ListNode* swapPairs(ListNode* head) {
-    ListNode* work = new ListNode(0);
+    ListNode tmp(0);
+    ListNode* work = &tmp;
     work->next = head;
     head = work;
     ListNode* swap = nullptr;
