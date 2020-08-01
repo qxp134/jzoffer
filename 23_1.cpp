@@ -39,7 +39,7 @@ class Solution {
     while (!heap.empty()) {
       IdWithValue pop_value = heap.top();
       heap.pop();
-      ListNode* flag_node = new ListNode(pop_value.value_);
+      ListNode* flag_node = new ListNode(pop_value.value);
       if (is_frist) {
         is_frist = false;
         head = flag_node;
