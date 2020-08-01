@@ -10,16 +10,16 @@ struct ListNode {
 };
 
 struct IdWithValue {
-  int id_;
-  int value_;
-  IdWithValue(int id, int value) : id_(id), value_(value) {}
+  int id;
+  int value;
+  IdWithValue(int id, int value) : id(id), value(value) {}
   // bool operator>(IdWithValue other) const {
   // return value_ > other.value_;
   //}
 };
 
 inline bool operator<(const IdWithValue& lhs, const IdWithValue& rhs) {
-  return lhs.value_ > rhs.value_;
+  return lhs.value > rhs.value;
 }
 
 class Solution {
@@ -48,7 +48,7 @@ class Solution {
         work->next = flag_node;
         work = flag_node;
       }
-      int index = pop_value.id_;
+      int index = pop_value.id;
       if (lists[index]) {
         heap.emplace(index, lists[index]->val);
         lists[index] = lists[index]->next;

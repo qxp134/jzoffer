@@ -1,36 +1,35 @@
 #include <iostream>
-#include <stack>
 #include <string>
 #include <vector>
 
 class Solution {
  public:
   std::vector<std::string> generateParenthesis(int n) {
-    std::vector<char> matching_sta;
+    int depth = 0;
     std::string cache_str;
     formed_vec_.clear();
-    dfs(n, matching_sta, cache_str);
+    dfs(n, depth, cache_str);
     return formed_vec_;
   }
-  void dfs(int n, std::vector<char> matching_sta, std::string cache_str) {
+  void dfs(int n, int depth, std::string cache_str) {
     if (n == 0) {
-      while (!matching_sta.empty()) {
-        matching_sta.pop_back();
+      while (depth != 0) {
+        --depth;
         cache_str.push_back(')');
       }
       formed_vec_.push_back(cache_str);
       return;
     }
-    if (!matching_sta.empty()) {
-      matching_sta.pop_back();
+    if (depth != 0) {
+      --depth;
       cache_str.push_back(')');
-      dfs(n, matching_sta, cache_str);
-      matching_sta.push_back('(');
+      dfs(n, depth, cache_str);
+      ++depth;
       cache_str.pop_back();
     }
-    matching_sta.push_back('(');
+    ++depth;
     cache_str.push_back('(');
-    dfs(n - 1, matching_sta, cache_str);
+    dfs(n - 1, depth, cache_str);
     return;
   }
 
